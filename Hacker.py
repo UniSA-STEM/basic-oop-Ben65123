@@ -8,6 +8,13 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
 class Hacker:
+    def __init__(self, name,):
+        self.name = name
+        self.inventory = ['CryptoToken']
+        self.rig = None
+
+
+
 
 
 
