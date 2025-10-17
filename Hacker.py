@@ -12,6 +12,24 @@ class Hacker:
         self.name = name
         self.inventory = ['CryptoToken']
         self.rig = None
+        self.trace_level = 0
+        self.exposed = False
+
+    def acquire_a_rig(self, rig= None):
+        if 'CryptoToken' in self.inventory:
+            self.inventory.remove('CryptoToken')
+            self.rig = rig
+            print(f"{self.name} has acquired a rig: {self.rig}")
+
+        else:
+            print('f{self.name} does not have enough CryptoTokens to acquire a rig')
+
+    def increase_trace_level(self, amount):
+        self.trace_level += amount
+        print(f"{self.name} trace level: {self.trace_level}")
+
+
+
 
 
 
