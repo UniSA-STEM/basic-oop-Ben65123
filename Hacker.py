@@ -11,63 +11,78 @@ from Asset import Asset
 from Rig import Rig
 
 class Hacker:
+    #The Hacker class represents a hacker with a name, an inventory, a rig, and a trace level.
     def __init__(self, name):
         self.name = name
-        ct_asset = Asset('crpt_token_assset', 'crpt_token_assset_description')
-        self.inventory = [ct_asset]
+        crypto_token = Asset("CryptoToken", "Used to buy or repair rigs")
+        self.inventory = [crypto_token]
         self.rig = None
         self.trace_level = 0
         self.exposed = False
-        self.threshold_amount = 5
 
-        # acquire rig
-        self.acquire_a_rig()
 
 
 
     def acquire_a_rig(self, rig= None):
+        #Allows hacker to acquire a rig.
+        #Look through inventory to find crypto token.
+        found_token = None
+        for item in self.inventory:
+            if isinstance(item, Asset) and item.name == "CryptoToken":
+                found_token = item
+                break
 
-        if self.inventory isinstance(Asset)
-            if self.inventory.name == "crypto_token":
-                #instantiate Rig object
-                rig = Rig()
-                self.rig = rig
-                # we have consumed one crypto token
-                self.inventory=None # can you have more than one crypto token??
+        #If no token can be found, cant get a rig.
 
-        # Allows the hacker to acquire a rig. Costs one CryptoToken. The rig can be passed in or created here.
-        if 'CryptoToken' in self.inventory:
-            self.inventory.remove('CryptoToken')
-
-            print(f"{self.name} has acquired a rig: {self.rig}")
-
-        else:
+        if found_token is None:
             print('f{self.name} does not have enough CryptoTokens to acquire a rig')
+            return
+        #Use one crypto token
+        self.inventory.remove(found_token)
 
-    def increase_trace_level(self, amount):
+        # If a rig is passed in use it if not create a new one.
+        if rig:
+            self.rig = rig
+        else:
+            self.rig = Rig(f"{self.name}'s Rig")
+        print(f"{self.name} has acquired a rig: {self.rig}")
+
+    def increase_trace_level(self, amount=1):
         #Increases trace level; exposes hacker if it exceeds threshold.
         if not isinstance(amount, int): #float?
-            print('Trace amount figure must be an integer')
-        #elif self.trace_level + amount > self.threshold_amount: # to do fix
-            #print('Trace amount figure must be less than the sum of trace_level and amount.')
-        else:
-            self.trace_level += amount
-            print(f' Increasing trace level by {amount}')
-            print(f"New trace level is: {self.trace_level}")
+            print("Trace amount must be an integer.")
+            return
+
+        if amount < 0:
+            print("Trace amount must be zero or positive.")
+            return
+
+        self.trace_level += amount
+        print(f' Increasing trace level by {amount}')
+        print(f"New trace level is: {self.trace_level}")
 
         if self.trace_level  > 5:
             self.exposed = True
             print(f"{self.name} has been exposed.")
 
-    def decrease_trace_level(self, amount):
-        #Decreases trace level and hides hacker when it is safe again #? not sure method
+    def decrease_trace_level(self, amount=1):
+        # Decreases trace level. If trace falls to 5 or below while exposed, hide the hacker.
+        if not isinstance(amount, int):
+            print("Trace amount must be an integer.")
+            return
+
+        if amount < 0:
+            print("Trace amount must be zero or positive.")
+            return
+
         if self.trace_level > 0:
             self.trace_level -= amount
-        if self.trace_level < 0:
-            self.trace_level = 0
+            if self.trace_level < 0:
+                self.trace_level = 0
+
         print(f"{self.name} trace level: {self.trace_level}")
 
-        if self.exposed == True and self.trace_level <= 5:
+        if self.exposed and self.trace_level <= 5:
             self.exposed = False
             print(f"{self.name} has been hidden.")
 
