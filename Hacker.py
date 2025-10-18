@@ -87,46 +87,49 @@ class Hacker:
             print(f"{self.name} has been hidden.")
 
     def launch_data_spikes(self, target_rig):
-        # launches data spikes at other rigs. consumes data spikes from attackers rig.
+        # launches a data spike at a target rig, consumes a data spike from the other rigs storage.
+
         if not self.rig:
-            print(f"{self.name} has no rig to launch data spikes from.")
             return
 
-        if self.rig.data_spike_counter <= 0:
-            print(f"{self.name} does not have a Data Spike.")
+        data_spike = None
+        for asset in self.rig.storage:
+            if asset.name == 'Data Spike':
+                data_spike = asset
+                break
+
+        if not data_spike:
             return
 
-        self.rig.data_spike_counter -= 1
+        self.rig.storage.remove(data_spike)
         target_rig.damage_counter += 1
-        print(f'{self.name} has damaged {target_rig.name} with a Data Spike')
 
         if target_rig.damage_counter >= 2:
             target_rig.broken_state = True
-            print(f"{target_rig.name} is now BROKEN!")
 
     def extract_unsecured_assets(self, target_rig):
-        #extracts all unencrypted data from a broken target rig
-
+        #extracts all unencrypted assests from broken target rig to hackers inventory.
         if not self.rig:
-            print(f"{self.name} has no rig to extract with.")
             return
 
         if not target_rig.broken_state:
-            print(f"{target_rig.name} is not broken; extraction not allowed.")
             return
 
-        if self.rig.removable_drive_counter <= 0:
-            print(f"{self.name} does not have a Removable Drive.")
+        removable_drive = None
+        for asset in self.rig.storage:
+            if asset.name == 'Removable Drive':
+                removable_drive = asset
+                break
+
+        if not removable_drive:
             return
-        self.rig.removable_drive_counter -= 1
-        print(f"{self.name} used a Removable Drive to extract assets from {target_rig.name}.")
+
+        self.rig.storage.remove(removable_drive)
 
         for asset in list(target_rig.storage):
-            if not asset.encrypted:
+            if not asset.encryption:
                 self.inventory.append(asset)
                 target_rig.storage.remove(asset)
-
-        print(f"{self.name} extracted items: {self.inventory}")
 
     def __str__(self):
         return f"Hacker object\n{self.name} "# To do add rest of fields'

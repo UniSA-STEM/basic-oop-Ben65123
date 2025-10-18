@@ -11,14 +11,17 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 from Asset import Asset
 
 class Rig:
+    # Represents a hackers rig. starts with 2 data spikes and one removable drive.
     def __init__(self, name):
         self.name = name
         self.damage_counter = 0
         self.broken_state = False
-        self.storage =[]
-        self.data_spike_counter = 2
-        self.removable_drive_counter = 1
         self.level = 0
+        self.storage = [
+            Asset("Data Spike", "Used to attack other rigs"),
+            Asset("Data Spike", "Used to attack other rigs"),
+            Asset("Removable Drive", "Used to extract unsecured assets")]
+
 
         # create two data spike objects
         ds1 = Asset("ds1", "dataspike object")
