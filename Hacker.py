@@ -80,6 +80,8 @@ class Hacker:
             if self.trace_level < 0:
                 self.trace_level = 0
 
+
+
         print(f"{self.name} trace level: {self.trace_level}")
 
         if self.exposed and self.trace_level <= 5:
