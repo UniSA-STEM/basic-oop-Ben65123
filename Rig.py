@@ -23,7 +23,7 @@ class Rig:
         # create two data spike objects
         ds1 = Asset("ds1", "dataspike object")
         ds2 = Asset("ds2", "dataspike object")
-        self.storage - [ds1, ds2]
+        self.storage = [ds1, ds2]
 
     def repair(self, crypto_token): #? what to do with crypto token
         if not isinstance(crypto_token, int):
@@ -43,8 +43,7 @@ class Rig:
         if self.damage_counter == 2 and self.level == 0:
             self.broken_state = True
 
-    def generate_assets(self
-        pass):
+
 
 
 

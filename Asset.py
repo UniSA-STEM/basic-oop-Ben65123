@@ -10,10 +10,10 @@ class Asset:
     def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.encryption = False
+        self.encrypted = False
     def __str__(self):
         if self.encryption:
-            return f'{self.name}: {self.description}: {self.encryption}'
+            return f'{self.name}: {self.description} [Encrypted]'
         else:
             return f'{self.name}: {self.description}'
 

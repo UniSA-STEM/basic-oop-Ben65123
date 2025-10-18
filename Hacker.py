@@ -111,23 +111,20 @@ class Hacker:
             print(f"{self.name} has no rig to extract with.")
             return
 
-        if target_rig.damage < target_rig.max_damage:
+        if not target_rig.broken_state:
             print(f"{target_rig.name} is not broken; extraction not allowed.")
             return
 
-        if 'Removable Drive' not in self.rig.storage:
+        if self.rig.removable_drive_counter <= 0:
             print(f"{self.name} does not have a Removable Drive.")
             return
-
-        self.rig.storage.remove('Removable Drive')
+        self.rig.removable_drive_counter -= 1
         print(f"{self.name} used a Removable Drive to extract assets from {target_rig.name}.")
 
         for asset in list(target_rig.storage):
             if not asset.encrypted:
                 self.inventory.append(asset)
                 target_rig.storage.remove(asset)
-
-        target_rig.storage.clear()
 
         print(f"{self.name} extracted items: {self.inventory}")
 
