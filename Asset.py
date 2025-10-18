@@ -1,8 +1,19 @@
-"""
-File: Asset.py
-Description: <A brief description of this Python module.>
-Author: <full name>
-ID: <student_id>
-Username: <username>
-This is my own work as defined by the University's Academic Misconduct Policy.
-"""
+
+#File: Asset.py
+#Description: <A brief description of this Python module.>
+#Author: Benjamin sienicki
+#ID: 110442676
+#Username: sieby003
+#This is my own work as defined by the University's Academic Misconduct Policy.
+
+class Asset:
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+        self.encryption = False
+    def __str__(self):
+        if self.encryption:
+            return f'{self.name}: {self.description}: {self.encryption}'
+        else:
+            return f'{self.name}: {self.description}'
+
