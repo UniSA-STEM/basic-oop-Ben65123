@@ -15,7 +15,7 @@ class Rig:
         self.name = name
         self.damage_counter = 0
         self.broken_state = False
-        self.storage = None
+        self.storage =[]
         self.data_spike_counter = 2
         self.removable_drive_counter = 1
         self.level = 0

@@ -80,8 +80,6 @@ class Hacker:
             if self.trace_level < 0:
                 self.trace_level = 0
 
-
-
         print(f"{self.name} trace level: {self.trace_level}")
 
         if self.exposed and self.trace_level <= 5:
@@ -89,13 +87,22 @@ class Hacker:
             print(f"{self.name} has been hidden.")
 
     def launch_data_spikes(self, target_rig):
-        # launches data spikes at other rigs.
-        if 'Data Spike' in target_rig.storage:
-            self.rig.storage.remove('Data Spike')
-            target_rig.damage += 1
-            print('f{self.name} has damaged {target_rig} with a Data Spike')
-        else:
-            print(f'{self.name} does not have enough Data Spike')
+        # launches data spikes at other rigs. consumes data spikes from attackers rig.
+        if not self.rig:
+            print(f"{self.name} has no rig to launch data spikes from.")
+            return
+
+        if self.rig.data_spike_counter <= 0:
+            print(f"{self.name} does not have a Data Spike.")
+            return
+
+        self.rig.data_spike_counter -= 1
+        target_rig.damage_counter += 1
+        print(f'{self.name} has damaged {target_rig.name} with a Data Spike')
+
+        if target_rig.damage_counter >= 2:
+            target_rig.broken_state = True
+            print(f"{target_rig.name} is now BROKEN!")
 
     def extract_unsecured_assets(self, target_rig):
         #extracts all unencrypted data from a broken target rig
