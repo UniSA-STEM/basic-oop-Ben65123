@@ -81,16 +81,21 @@ if __name__ == '__main__':
     # print(my_rig.level)
 
     #tested get hit method
-    print("Before hit:")
-    print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
+    # print("Before hit:")
+    # print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
+    #
+    # my_rig.take_hit()
+    # print("After 1st hit:")
+    # print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
+    #
+    # my_rig.take_hit()
+    # print("After 2nd hit:")
+    # print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
 
-    my_rig.take_hit()
-    print("After 1st hit:")
-    print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
+    #Testing str for rig
 
-    my_rig.take_hit()
-    print("After 2nd hit:")
-    print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
+    my_rig.broken_state = True
+    print(my_rig)
 
 
 

@@ -64,6 +64,19 @@ class Rig:
         if self.damage_counter >= 2 and self.level == 0:
             self.broken_state = True
 
+    def __str__(self):
+        if self.broken_state == False:
+            self.broken_state = 'Perfect'
+        else:
+            self.broken_state = 'Broken'
+        assets = ""
+        if not self.storage:
+            assets = "No assets stored"
+        else:
+            for asset in self.storage:
+                assets += str(asset) + ", "
+        return (f'The rigs name is:{self.name}\nIts condition is:'f' {self.broken_state}\nIts stored assets are: {assets}')
+
 
 
 
