@@ -108,7 +108,7 @@ class Hacker:
             target_rig.broken_state = True
 
     def extract_unsecured_assets(self, target_rig):
-        #extracts all unencrypted assests from broken target rig to hackers inventory.
+        #extracts all unencrypted assets from broken target rig to hackers inventory.
         if not self.rig:
             return
 
@@ -131,10 +131,60 @@ class Hacker:
                 self.inventory.append(asset)
                 target_rig.storage.remove(asset)
 
+    def encrypt_assets(self, assets):
+            # Encrypt assets in hacker inventory or rig storage if hacker has a Security Chip
+            has_chip = False
+
+            for item in self.inventory:
+                if isinstance(item, Asset) and item.name == "Security Chip":
+                    has_chip = True
+                    break
+
+            if not has_chip and self.rig:
+                for item in self.rig.storage:
+                    if isinstance(item, Asset) and item.name == "Security Chip":
+                        has_chip = True
+                        break
+
+            if not has_chip:
+                print(f"{self.name} has no Security Chip to encrypt assets.")
+                return
+
+            for asset in assets:
+                if asset in self.inventory or (self.rig and asset in self.rig.storage):
+                    asset.encryption = True
+                    print(f"{asset.name} has been encrypted.")
+
+    def decrypt_assets(self, assets):
+        has_chip1 = False
+
+        for item in self.inventory:
+            if isinstance(item, Asset) and item.name == "Security Chip":
+                has_chip1 = True
+                break
+
+        if not has_chip1 and self.rig:
+            for item in self.rig.storage:
+                if isinstance(item, Asset) and item.name == "Security Chip":
+                    has_chip1 = True
+                    break
+
+        if not has_chip1:
+            print(f"{self.name} has no Security Chip to decrypt assets.")
+            return
+
+        if not isinstance(assets, list):
+            assets = [assets]
+
+        for asset in assets:
+            if asset in self.inventory or (self.rig and asset in self.rig.storage):
+                asset.encryption = False
+                print(f"{asset.name} has been decrypted.")
+
     def __str__(self):
         return f"Hacker object\n{self.name} "# To do add rest of fields'
 
-     # def encrypt_assets(self, assets):
+
 #
 #
 #

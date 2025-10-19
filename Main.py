@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
 
 
-    # Testing hacker
+# Testing hacker
 
 
     # hack = Hacker('bob')
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     #Test for upgrade rig before adding hardware patch to storage.
     # patch = Asset("Hardware Patch", "Upgrades the rig to a higher level")
     #
-    my_rig = Rig("R1")
+    #my_rig = Rig("R1")
     #
     # print("Before upgrade:")
     # print(my_rig.level)
@@ -94,8 +94,11 @@ if __name__ == '__main__':
 
     #Testing str for rig
 
-    my_rig.broken_state = True
-    print(my_rig)
+    # my_rig.broken_state = True
+    # print(my_rig)
+
+    #Test acquire a rig
+
 
 
 
