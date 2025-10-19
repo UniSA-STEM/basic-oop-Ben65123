@@ -35,7 +35,7 @@ class Hacker:
         #If no token can be found, cant get a rig.
 
         if found_token is None:
-            print('f{self.name} does not have enough CryptoTokens to acquire a rig')
+            print(f'{self.name} does not have enough CryptoTokens to acquire a rig')
             return
         #Use one crypto token
         self.inventory.remove(found_token)
@@ -108,7 +108,7 @@ class Hacker:
             target_rig.broken_state = True
 
     def extract_unsecured_assets(self, target_rig):
-        #extracts all unencrypted assets from broken target rig to hackers inventory.
+        #Extracts all unencrypted assets from broken target rig to hackers inventory.
         if not self.rig:
             return
 
@@ -132,7 +132,7 @@ class Hacker:
                 target_rig.storage.remove(asset)
 
     def encrypt_assets(self, assets):
-            # Encrypt assets in hacker inventory or rig storage if hacker has a Security Chip
+            # Encrypts assets in hacker inventory or rig storage if hacker has a Security Chip
             has_chip = False
 
             for item in self.inventory:
@@ -156,7 +156,7 @@ class Hacker:
                     print(f"{asset.name} has been encrypted.")
 
     def decrypt_assets(self, assets):
-        #Decrypt assets in hacker inventory or rig storage if hacker has a security chip.
+        #Decrypts assets in hacker inventory or rig storage if hacker has a security chip.
         has_chip1 = False
 
         for item in self.inventory:
@@ -240,16 +240,12 @@ class Hacker:
             print(f"{asset_name} not found in {self.name}'s inventory")
             return None
 
-
-
-
-
-
     def __str__(self):
-        return f"Hacker object\n{self.name} "# To do add rest of fields'
-
-
-
+        rig_name = self.rig.name if self.rig else "No Rig"
+        return (f"Hacker name: {self.name}\n"
+                f"Rig: {rig_name}\n"
+                f"Trace level: {self.trace_level}\n"
+                f"Inventory: {[item.name for item in self.inventory]}")
 
 #
 #

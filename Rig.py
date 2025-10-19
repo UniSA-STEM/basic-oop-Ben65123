@@ -9,6 +9,7 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
 from Asset import Asset
+from Hacker import Hacker
 
 class Rig:
     # Represents a hackers rig. starts with 2 data spikes and one removable drive.
@@ -40,21 +41,13 @@ class Rig:
         print(f'{self.name} has been repaired!')
 
     def upgrade(self, hardware_patch):
-        #upgrades the rig using a hardware patch from storage
-        patch = None
-        for asset in self.storage:
-            if asset.name == "Hardware Patch":
-                patch = asset
-
-
-        if not patch:
-            print(f"{self.name} does not have a Hardware Patch to upgrade.")
+        # upgrades the rig using a hardware patch
+        if not isinstance(hardware_patch, Asset) or hardware_patch.name != "Hardware Patch":
+            print("A valid Hardware Patch is required to upgrade the rig.")
             return
 
-        self.storage.remove(patch)
         self.level += 1
         print(f"{self.name} has been upgraded to level {self.level}.")
-
 
     def take_hit(self):
         #increases rig damage; breaks if too damaged at that current level.

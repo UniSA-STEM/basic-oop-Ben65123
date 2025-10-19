@@ -7,6 +7,7 @@
 #This is my own work as defined by the University's Academic Misconduct Policy.
 
 class Asset:
+    # The Asset class stores an asset’s name and description and tracks if it is encrypted or not.
     def __init__(self, name, description):
         self.name = name
         self.description = description
