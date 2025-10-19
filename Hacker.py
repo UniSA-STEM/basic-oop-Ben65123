@@ -202,6 +202,31 @@ class Hacker:
         self.rig.upgrade(patch)
         print(f"{self.name} upgraded {self.rig.name} to level {self.rig.level}")
 
+    def store_assets(self, asset):
+        #Gives a hacker the ability to store an asset from hackers inventory to their rig's storage.
+        if not isinstance(asset, Asset):
+            print(f"{self.name} has no asset to store.")
+
+
+        if asset in self.inventory:
+            self.inventory.remove(asset)
+            self.rig.storage.append(asset)
+            print(f"{self.name} stored {asset.name} in {self.rig.name}")
+
+    def retrieve_assets(self, asset):
+        #Allows the hacker to retrieve assets from its rig storage and append them in their inventory.
+        if not isinstance(asset, Asset):
+            print(f"{self.name} has no asset {asset}.")
+            return
+
+        if asset in self.rig.storage:
+            self.rig.storage.remove(asset)
+            self.inventory.append(asset)
+            print(f"{self.name} retrieved {asset.name} in {self.rig.name}")
+
+
+
+
 
 
     def __str__(self):
