@@ -20,6 +20,41 @@ class Hacker:
         self.trace_level = 0
         self.exposed = False
 
+    def get_name(self):
+        return self.name
+
+    def get_rig(self):
+        return self.rig
+
+    def get_inventory(self):
+        return self.inventory
+
+    def get_trace_level(self):
+        return self.trace_level
+
+    def get_exposed(self):
+        return self.exposed
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_rig(self, rig):
+        self.rig = rig
+
+    def set_trace_level(self, trace_level):
+        self.trace_level = trace_level
+        if self.trace_level <= 5:
+            self.exposed = False
+        else:
+            self.exposed = True
+
+    def set_exposed(self, state):
+        if isinstance(state, bool):
+            self.exposed = state
+        else:
+            print("set_exposed expects a boolean")
+
+
 
 
 

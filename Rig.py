@@ -9,7 +9,6 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
 from Asset import Asset
-from Hacker import Hacker
 
 class Rig:
     # Represents a hackers rig. starts with 2 data spikes and one removable drive.
@@ -20,11 +19,36 @@ class Rig:
         self.level = 0
         # creates 2 data spikes and 1 removable drive
         self.storage = [
-            Asset("Data Spike", "Used to attack other rigs"),
-            Asset("Data Spike", "Used to attack other rigs"),
+            Asset("Data Spike", "Used to attack other rigs, "),
+            Asset("Data Spike", "Used to attack other rigs, "),
             Asset("Removable Drive", "Used to extract unsecured assets")]
 
+    def get_name(self):
+        return self.name
 
+    def get_level(self):
+        return self.level
+
+    def get_storage(self):
+        return self.storage
+
+    def get_broken_state(self):
+        return self.broken_state
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_level(self, level):
+        if isinstance(level, int) and level >= 0:
+            self.level = level
+        else:
+            print("Invalid level")
+
+    def set_broken_state(self, broken_state):
+        if isinstance(broken_state, bool):
+            self.broken_state = broken_state
+        else:
+            print("Invalid broken state — must be True or False.")
 
 
     def repair(self, crypto_token):
@@ -67,7 +91,7 @@ class Rig:
             assets = "No assets stored"
          else:
              for asset in self.storage:
-                 assets += str(asset) + ", "
+                 assets += str(asset)
          return (f'The rigs name is:{self.name}\nIts condition is:'f' {self.broken_state}\nIts stored assets are: {assets}')
 
 
