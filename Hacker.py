@@ -87,7 +87,7 @@ class Hacker:
             print(f"{self.name} has been hidden.")
 
     def launch_data_spikes(self, target_rig):
-        # launches a data spike at a target rig, consumes a data spike from the other rigs storage.
+        # launches a data spike at a target rig, consumes a data spike from the other rig's storage.
 
         if not self.rig:
             return
@@ -156,6 +156,7 @@ class Hacker:
                     print(f"{asset.name} has been encrypted.")
 
     def decrypt_assets(self, assets):
+        #Decrypt assets in hacker inventory or rig storage if hacker has a security chip.
         has_chip1 = False
 
         for item in self.inventory:
@@ -181,8 +182,32 @@ class Hacker:
                 asset.encryption = False
                 print(f"{asset.name} has been decrypted.")
 
+    def upgrade_rig(self):
+        #Upgrades rig using hardware patch and by calling the rigs upgrade method.
+        patch = None
+        for asset in self.inventory:
+            if isinstance(asset, Asset) and asset.name == "Hardware Patch":
+                patch = asset
+                break
+
+        if not patch:
+            print(f"{self.name} has no Hardware Patch to upgrade rig.")
+            return
+
+        if not self.rig:
+            print(f"{self.name} has no rig to upgrade.")
+            return
+
+        self.inventory.remove(patch)
+        self.rig.upgrade(patch)
+        print(f"{self.name} upgraded {self.rig.name} to level {self.rig.level}")
+
+
+
     def __str__(self):
         return f"Hacker object\n{self.name} "# To do add rest of fields'
+
+
 
 
 #
