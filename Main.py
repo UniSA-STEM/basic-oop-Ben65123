@@ -92,12 +92,9 @@ if __name__ == '__main__':
     # print("After 2nd hit:")
     # print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
 
-    #Testing str for rig
-
     # my_rig.broken_state = True
     # print(my_rig)
 
-    #Test acquire a rig
 
 
 

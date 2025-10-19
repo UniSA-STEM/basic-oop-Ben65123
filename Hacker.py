@@ -224,6 +224,22 @@ class Hacker:
             self.inventory.append(asset)
             print(f"{self.name} retrieved {asset.name} in {self.rig.name}")
 
+    def scan_inventory(self, asset_name):
+        # Scans the hackers inventory and removes it if it is found.
+        found_asset = None
+        for asset in self.inventory:
+            if isinstance(asset, Asset) and asset.name == asset_name:
+                found_asset = asset
+                break
+
+        if found_asset:
+            self.inventory.remove(found_asset)
+            print(f"{self.name} found and removed {found_asset.name} from inventory")
+            return found_asset
+        else:
+            print(f"{asset_name} not found in {self.name}'s inventory")
+            return None
+
 
 
 
