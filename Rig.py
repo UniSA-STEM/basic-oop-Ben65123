@@ -57,8 +57,11 @@ class Rig:
 
 
     def take_hit(self):
+        #increases rig damage; breaks if too damaged at that current level.
         self.damage_counter += 1
-        if self.damage_counter == 2 and self.level == 0:
+
+        # A rig at level 0 will break after two hits.
+        if self.damage_counter >= 2 and self.level == 0:
             self.broken_state = True
 
 
