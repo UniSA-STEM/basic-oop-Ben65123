@@ -8,9 +8,11 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
 
-from Hacker import Hacker
-from Asset import Asset
+
 from Rig import Rig
+from Asset import Asset
+from Hacker import Hacker
+
 
 if __name__ == '__main__':
 
@@ -59,6 +61,26 @@ if __name__ == '__main__':
     # hacker1.launch_data_spikes(rig_target)
     # hacker1.launch_data_spikes(rig_target)
     # print(f"{rig_target.name} damage_counter: {rig_target.damage_counter}, broken_state: {rig_target.broken_state}")
+
+    #Test for upgrade rig before adding hardware patch to storage.
+    patch = Asset("Hardware Patch", "Upgrades the rig to a higher level")
+
+    my_rig = Rig("R1")
+
+    print("Before upgrade:")
+    print(my_rig.level)
+    my_rig.upgrade("Hardware Patch")
+    print("After upgrade:")
+    print(my_rig.level)
+
+    #After adding hardware patch to storage should upgrade the level now.
+
+    my_rig.storage.append(patch)
+    my_rig.upgrade("Hardware Patch")
+    print("After upgrade:")
+    print(my_rig.level)
+
+
 
 
 

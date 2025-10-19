@@ -43,8 +43,9 @@ class Rig:
         #upgrades the rig using a hardware patch from storage
         patch = None
         for asset in self.storage:
-            if asset.name == 'Hardware Patch':
+            if asset.name == "Hardware Patch":
                 patch = asset
+
 
         if not patch:
             print(f"{self.name} does not have a Hardware Patch to upgrade.")
