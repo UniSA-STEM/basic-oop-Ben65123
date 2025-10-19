@@ -63,22 +63,38 @@ if __name__ == '__main__':
     # print(f"{rig_target.name} damage_counter: {rig_target.damage_counter}, broken_state: {rig_target.broken_state}")
 
     #Test for upgrade rig before adding hardware patch to storage.
-    patch = Asset("Hardware Patch", "Upgrades the rig to a higher level")
-
+    # patch = Asset("Hardware Patch", "Upgrades the rig to a higher level")
+    #
     my_rig = Rig("R1")
+    #
+    # print("Before upgrade:")
+    # print(my_rig.level)
+    # my_rig.upgrade("Hardware Patch")
+    # print("After upgrade:")
+    # print(my_rig.level)
+    #
+    # #After adding hardware patch to storage should upgrade the level now.
+    #
+    # my_rig.storage.append(patch)
+    # my_rig.upgrade("Hardware Patch")
+    # print("After upgrade:")
+    # print(my_rig.level)
 
-    print("Before upgrade:")
-    print(my_rig.level)
-    my_rig.upgrade("Hardware Patch")
-    print("After upgrade:")
-    print(my_rig.level)
+    #tested get hit method
+    print("Before hit:")
+    print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
 
-    #After adding hardware patch to storage should upgrade the level now.
+    my_rig.take_hit()
+    print("After 1st hit:")
+    print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
 
-    my_rig.storage.append(patch)
-    my_rig.upgrade("Hardware Patch")
-    print("After upgrade:")
-    print(my_rig.level)
+    my_rig.take_hit()
+    print("After 2nd hit:")
+    print(f"Damage: {my_rig.damage_counter}, Broken: {my_rig.broken_state}")
+
+
+
+
 
 
 
