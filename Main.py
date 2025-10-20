@@ -7,14 +7,69 @@ Username: <username>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
-
-
 from Rig import Rig
 from Asset import Asset
 from Hacker import Hacker
 
 
 if __name__ == '__main__':
+
+    # Create a hacker
+    print("=== Creating Hacker ===")
+    hacker = Hacker("Neo")
+    print(hacker)
+    print()
+
+    # Acquire a rig
+    print("=== Acquiring Rig ===")
+    hacker.acquire_a_rig()
+    print(hacker)
+    print()
+
+    # Test storing and retrieving assets
+    print("=== Testing Store and Retrieve Assets ===")
+    drive = Asset("Removable Drive", "Used to extract assets")
+    hacker.inventory.append(drive)
+    hacker.store_assets(drive)
+    hacker.retrieve_assets(drive)
+    print()
+
+    # Test upgrading rig
+    print("=== Testing Rig Upgrade ===")
+    patch = Asset("Hardware Patch", "Used to upgrade rigs")
+    hacker.inventory.append(patch)
+    hacker.upgrade_rig()
+    print()
+
+    # Test encrypt/decrypt assets
+    print("=== Testing Encryption and Decryption ===")
+    chip = Asset("Security Chip", "Used to encrypt assets")
+    file1 = Asset("File", "Important data")
+    hacker.inventory.append(chip)
+    hacker.inventory.append(file1)
+    hacker.encrypt_assets([file1])
+    hacker.decrypt_assets([file1])
+    print()
+
+    # Test damage and repair
+    print("=== Testing Rig Damage and Repair ===")
+    hacker.rig.take_hit()
+    hacker.rig.take_hit()
+    token = Asset("CryptoToken", "Used to buy or repair rigs")
+    hacker.rig.repair(token)
+    print()
+
+    # Show final state
+    print("=== Final Hacker State ===")
+    print(hacker)
+    print(hacker.rig)
+
+
+
+
+
+
+
 
 
 
