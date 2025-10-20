@@ -1,6 +1,8 @@
 
 #File: Asset.py
-#Description: <A brief description of this Python module.>
+#Description: This is my asset classes. It defines the assets used by hackers and rigs. These asset objects include data spikes,
+#crypto tokens, removable drive and security chips.
+
 #Author: Benjamin sienicki
 #ID: 110442676
 #Username: sieby003

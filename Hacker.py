@@ -1,6 +1,8 @@
 """
 File: Hacker.py
-Description: <A brief description of this Python module.>
+Description: This is my hacker class. its main functions are managing a hackers name, inventory, rig, trace level and exposed state.
+Includes methods like acquiring a rig, launching data spikes, the encryption and decryption of assets, storing and retrieving assets
+and upgrading rigs.
 Author: Benjamin sienicki
 ID: 110442676
 Username: sieby003
@@ -162,7 +164,7 @@ class Hacker:
         self.rig.storage.remove(removable_drive)
 
         for asset in list(target_rig.storage):
-            if not asset.encryption:
+            if not asset.encrypted:
                 self.inventory.append(asset)
                 target_rig.storage.remove(asset)
 
@@ -187,7 +189,7 @@ class Hacker:
 
             for asset in assets:
                 if asset in self.inventory or (self.rig and asset in self.rig.storage):
-                    asset.encryption = True
+                    asset.encrypted = True
                     print(f"{asset.name} has been encrypted.")
 
     def decrypt_assets(self, assets):
@@ -214,7 +216,7 @@ class Hacker:
 
         for asset in assets:
             if asset in self.inventory or (self.rig and asset in self.rig.storage):
-                asset.encryption = False
+                asset.encrypted = False
                 print(f"{asset.name} has been decrypted.")
 
     def upgrade_rig(self):

@@ -1,11 +1,11 @@
 """
 File: Rig.py
-Description: <A brief description of this Python module.>
-Author: <full name>
-ID: <student_id>
-Username: <username>
+Description: This is my rig class. This represents a hackers rig, that can store assets, launch data spikes, take damage,
+be repaired, and upgrade its own rig. It handles rig state, level, and stored assets.
+Author: Benjamin Sienicki
+ID: 110442676
+Username: sieby003
 This is my own work as defined by the University's Academic Misconduct Policy.
-
 """
 
 from Asset import Asset

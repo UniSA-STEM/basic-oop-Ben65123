@@ -1,9 +1,9 @@
 """
 File: main.py
-Description: <A brief description of this Python module.>
-Author: <full name>
-ID: <student_id>
-Username: <username>
+Description: This is my main module. Used for testing all my code.
+Author: Benjamin Sienicki
+ID: 110442676
+Username: sieby003
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
@@ -57,6 +57,46 @@ if __name__ == '__main__':
     hacker.rig.take_hit()
     token = Asset("CryptoToken", "Used to buy or repair rigs")
     hacker.rig.repair(token)
+    print()
+
+    # Test data spike attacks
+    print("=== Testing Data Spike Attack ===")
+    attacker = Hacker("Trinity")
+    defender = Hacker("Morpheus")
+    attacker.acquire_a_rig()
+    defender.acquire_a_rig()
+    attacker.launch_data_spikes(defender.rig)
+    attacker.launch_data_spikes(defender.rig)
+    print(f"{defender.rig.name} damage: {defender.rig.damage_counter}, broken: {defender.rig.broken_state}")
+    print()
+
+    # Test extraction from broken rig
+    print("=== Testing Extraction from Broken Rig ===")
+    thief = Hacker("Cipher")
+    victim = Hacker("Tank")
+    thief.acquire_a_rig()
+    victim.acquire_a_rig()
+    fileA = Asset("FileA", "Unsecured data")
+    fileB = Asset("FileB", "Unsecured data 2")
+    victim.rig.storage.append(fileA)
+    victim.rig.storage.append(fileB)
+    # Break victim rig
+    thief.rig.storage.append(Asset("Data Spike", "Used to attack other rigs"))
+    thief.launch_data_spikes(victim.rig)
+    thief.rig.storage.append(Asset("Data Spike", "Used to attack other rigs"))
+    thief.launch_data_spikes(victim.rig)
+    # Add removable drive for extraction
+    thief.rig.storage.append(Asset("Removable Drive", "Used to extract unsecured assets"))
+    thief.extract_unsecured_assets(victim.rig)
+    print(f"Thief inventory: {[str(x) for x in thief.inventory]}")
+    print(f"Victim storage after extraction: {[str(x) for x in victim.rig.storage]}")
+    print()
+
+    # Test edge cases
+    print("=== Testing Edge Cases ===")
+    hacker.upgrade_rig()
+    hacker.encrypt_assets([file1])
+    hacker.launch_data_spikes(defender.rig)
     print()
 
     # Show final state
